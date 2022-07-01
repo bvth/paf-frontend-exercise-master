@@ -56,6 +56,9 @@ export default function Main() {
 
     return content ?
         <>
+            <h1>{content.title}</h1>
+            <hr/>
+            <p>{content.description}</p>
             <Filter
                 categories={filteringCategories}
                 providers={filteringProviders}

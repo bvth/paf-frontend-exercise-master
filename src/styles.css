@@ -1,0 +1,36 @@
+body {
+    background: #e6e6e6;
+}
+
+#root  {
+    text-align: center;
+    margin: 0 12.5%;
+    position: relative;
+}
+
+.category {
+    position: relative;
+}
+
+h1, h2, p {
+    text-align: left;
+}
+
+.game {
+    display: inline-block;
+}
+.game img {
+    width: 100%;
+}
+@media screen and (min-width: 320px) and (max-width: 480px){
+    .game {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .game {
+        width: 25%;
+    }
+}
+
