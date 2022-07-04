@@ -22,6 +22,35 @@ h1, h2, p {
 .game img {
     width: 100%;
 }
+
+.filter-form > * {
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.filter-form .search-container {
+    position: relative;
+}
+
+.filter-form .search-history {
+    position: absolute;
+    z-index: 100;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #fff;
+    width: 100%;
+}
+
+.search-history div {
+    cursor: pointer;
+    padding: 0.5em 0.4em;
+    text-align: left;
+}
+
+.search-history div:hover {
+    background: #4449;
+}
+
 @media screen and (min-width: 320px) and (max-width: 480px){
     .game {
         width: 50%;

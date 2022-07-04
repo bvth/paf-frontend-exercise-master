@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {CategoryModel} from "../models/categoryModel";
 import Category from "./category";
 import Filter from "./filter";
@@ -27,19 +27,19 @@ export default function Main() {
     }, [])
 
     const onFilter = (category: string, provider: string) => {
-        let filteredContent: CategoryModel[];
+        let newContent: CategoryModel[];
 
         if(category) {
-            filteredContent = content.lists.filter((item: CategoryModel) => item.id === category)
+            newContent = content.lists.filter((item: CategoryModel) => item.id === category)
                 .map((item: CategoryModel) => ({id: item.id, title: item.title}));
             if(provider)
-                filteredContent.forEach(cat => {
+                newContent.forEach(cat => {
                     let originalCategory = content.lists.find(item => item.id === cat.id)
                     cat.items = originalCategory ? [...originalCategory.items].filter(item => item.provider === provider) : []
                 });
             else {
                 let filteringProviders = new Set<string>();
-                filteredContent.forEach(cat => {
+                newContent.forEach(cat => {
                     let originalCategory = content.lists.find(item => item.id === cat.id)
                     originalCategory.items.forEach(item => filteringProviders.add(item.provider));
                     cat.items = originalCategory ? [...originalCategory.items] : [];
@@ -49,9 +49,24 @@ export default function Main() {
         }
         else {
             setFilteringProviders([]);
-            filteredContent = content.lists;
+            newContent = content.lists;
         }
-        setFilteredContent(filteredContent);
+        setFilteredContent(newContent);
+    }
+
+    const onSearch = (searchWord: string) => {
+        let newContent: CategoryModel[];
+
+        newContent = content.lists.map((item: CategoryModel) => ({id: item.id, title: item.title}));
+        newContent.forEach(cat => {
+            cat.items = [...content.lists.find(item => item.id === cat.id).items]
+        })
+        if(searchWord) {
+            newContent.forEach(cat => {
+                cat.items = cat.items.filter(item => item.title.toLowerCase().includes(searchWord.toLowerCase()))
+            })
+        }
+        setFilteredContent(newContent);
     }
 
     return content ?
@@ -62,7 +77,8 @@ export default function Main() {
             <Filter
                 categories={filteringCategories}
                 providers={filteringProviders}
-                onFilter={onFilter}/>
+                onFilter={onFilter}
+                onSearch={onSearch}/>
             {filteredContent.map((item: CategoryModel) => <Category key={item.title + item.id} {...item}/>)}
         </>
     : ''

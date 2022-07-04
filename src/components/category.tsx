@@ -1,4 +1,3 @@
-import React from "react";
 import {CategoryModel} from "../models/categoryModel";
 import Game from "./game";
 
