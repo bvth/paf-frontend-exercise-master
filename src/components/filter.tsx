@@ -61,13 +61,13 @@ export default function Filter(props: {categories: string[]; providers: string[]
 
     return <form className='filter-form'>
             <div className='filter-container'>
-                <select name='category' id='category' value={selectedCategory} onChange={setFilter}>
+                <select name='category' className='category zero-border-radius-right' value={selectedCategory} onChange={setFilter}>
                     <option value=''>All categories</option>
                     {props.categories.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
                 <select
                     name='provider'
-                    id='provider'
+                    className='provider zero-border-radius-left'
                     value={selectedProvider}
                     onChange={setFilter}
                     disabled={!props.providers.length}>
@@ -79,6 +79,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
                 <div className='flex-container'>
                     <input
                         autoComplete='off'
+                        className='zero-border-radius-right'
                         type='text'
                         name='searchField'
                         ref={inputRef}
@@ -87,7 +88,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
                         onFocus={toggleHistory}
                         onBlur={toggleHistory}
                         placeholder='Game name ...'/>
-                    <button onClick={onSearch} type='submit'>Search</button>
+                    <button className='zero-border-radius-left' onClick={onSearch} type='submit'>Search</button>
                 </div>
                 {searchHistory.length && showHistory ?
                     <div className='search-history'>

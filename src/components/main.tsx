@@ -9,7 +9,6 @@ export default function Main() {
     const [filteringCategories, setFilteringCategories] = useState<string[]>([]);
     const [filteringProviders, setFilteringProviders] = useState<string[]>([]);
 
-
     useEffect(() => {
         fetch(
             '/api/games/lists.json',
@@ -85,7 +84,6 @@ export default function Main() {
                     onSearch={onSearch}/>
                 {filteredContent.map((item: CategoryModel) => <Category key={item.title + item.id} {...item}/>)}
             </main>
-
         </>
     : ''
 }

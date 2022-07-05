@@ -102,7 +102,14 @@ h1, h2, p {
 
 .filter-container > *, .search-container .flex-container > * {
     padding: 5px;
-    border-radius: 999px;
+}
+
+.zero-border-radius-right {
+    border-radius: 999px 0 0 999px;
+}
+
+.zero-border-radius-left {
+    border-radius: 0 999px 999px 0;
 }
 
 .filter-form .search-history {
@@ -136,7 +143,7 @@ h1, h2, p {
     }
 
     .filter-container > *, .search-container .flex-container > * {
-        padding: 5px;
+        padding: 7px;
     }
 
     .game {
@@ -165,7 +172,7 @@ h1, h2, p {
 
 @media screen and (max-width: 1200px) {
     #root {
-        margin: 0 12%;
+        margin: 0 10%;
     }
 
     * {
