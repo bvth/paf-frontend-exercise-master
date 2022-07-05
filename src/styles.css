@@ -74,6 +74,11 @@ h1, h2, p {
     cursor: default;
 }
 
+.filter-container  > *:focus-visible, .search-container .flex-container input:focus-visible{
+    border: none;
+    outline: none;
+}
+
 .flex-container {
     width: 100%;
     display: flex;

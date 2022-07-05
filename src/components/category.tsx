@@ -6,6 +6,7 @@ export default function Category(props: CategoryModel) {
         <h2>{props.title}</h2>
         <div className="flex-container">
             {props.items.map(item => <Game key={props.title+item.title} {...item}/>)}
+            {!props.items.length && <p>No result matching your search</p>}
         </div>
     </section>
 }

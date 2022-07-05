@@ -1,6 +1,6 @@
 import {ChangeEvent, useEffect, useRef, useState} from 'react';
 
-export default function Filter(props: {categories: string[]; providers: string[]; onFilter: Function; onSearch: Function}) {
+export default function Filter(props: {categories: string[]; providers: string[]; onFilter: Function;}) {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [selectedProvider, setSelectedProvider] = useState<string>('');
     const [searchHistory, setSearchHistory] = useState<string[]>([])
@@ -17,25 +17,22 @@ export default function Filter(props: {categories: string[]; providers: string[]
     const setFilter = (event: ChangeEvent<HTMLSelectElement>) => {
         event.preventDefault();
         let {name, value} = event.target;
-        if(searchWord) {
-            props.onSearch('');
-            setSearchWord('');
-        }
+
         if(name === 'category') {
-            props.onFilter(value, undefined)
+            //Filter by category should consider current filtered providers
+            props.onFilter(name, value, selectedProvider, searchWord);
             setSelectedCategory(value);
-            setSelectedProvider('');
         } else {
-            props.onFilter(selectedCategory, value)
+            //'Game' is a child of 'Category', therefore, sorting by providers doesn't affect the parents
+            props.onFilter(name, value, '', searchWord);
             setSelectedProvider(value)
         }
     }
 
     const onSearch = (event: Event) => {
         event.preventDefault();
-        props.onSearch(inputRef.current.value)
-        setSelectedProvider('');
-        setSelectedCategory('');
+        //Searching should base on current filtered content
+        props.onFilter('category', selectedCategory, selectedProvider, inputRef.current.value);
         if(inputRef.current.value) {
             let history = [...searchHistory];
             history.unshift(inputRef.current.value);
@@ -61,7 +58,11 @@ export default function Filter(props: {categories: string[]; providers: string[]
 
     return <form className='filter-form'>
             <div className='filter-container'>
-                <select name='category' className='category zero-border-radius-right' value={selectedCategory} onChange={setFilter}>
+                <select
+                    name='category'
+                    className='category zero-border-radius-right'
+                    value={selectedCategory}
+                    onChange={setFilter}>
                     <option value=''>All categories</option>
                     {props.categories.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
@@ -69,8 +70,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
                     name='provider'
                     className='provider zero-border-radius-left'
                     value={selectedProvider}
-                    onChange={setFilter}
-                    disabled={!props.providers.length}>
+                    onChange={setFilter}>
                     <option value=''>All providers</option>
                     {props.providers.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
