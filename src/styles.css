@@ -63,6 +63,11 @@ h1, h2, p {
     width: 50%;
     background: #fff;
     border: none;
+    cursor: pointer;
+}
+
+.filter-form .filter-container  > *:disabled{
+    cursor: default;
 }
 
 .filter-form .search-container .flex-container {
@@ -82,8 +87,13 @@ h1, h2, p {
 }
 
 .filter-form .search-container .flex-container  button {
-    background: #3abd74;
+    background: #25ac61;
     color: #fff;
+    cursor: pointer;
+}
+
+.filter-form .search-container .flex-container  button:hover {
+    background: #3abd74;
 }
 
 .filter-container > *, .search-container .flex-container > * {
