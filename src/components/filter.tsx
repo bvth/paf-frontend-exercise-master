@@ -34,6 +34,8 @@ export default function Filter(props: {categories: string[]; providers: string[]
     const onSearch = (event: Event) => {
         event.preventDefault();
         props.onSearch(inputRef.current.value)
+        setSelectedProvider('');
+        setSelectedCategory('');
         if(inputRef.current.value) {
             let history = [...searchHistory];
             history.unshift(inputRef.current.value);
@@ -58,7 +60,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
     }
 
     return <form className="filter-form">
-            <div>
+            <div className="filter-container">
                 <select name="category" id="category" value={selectedCategory} onChange={setFilter}>
                     <option value="">All categories</option>
                     {props.categories.map(item => <option key={item} value={item}>{item}</option>)}
@@ -73,9 +75,6 @@ export default function Filter(props: {categories: string[]; providers: string[]
                     {props.providers.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
             </div>
-            <div>
-                <span>OR</span>
-            </div>
             <div className="search-container">
                 <input
                     autoComplete="off"
@@ -87,7 +86,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
                     onFocus={toggleHistory}
                     onBlur={toggleHistory}/>
                 <button onClick={onSearch} type="submit">Search</button>
-                {searchHistory.length && showHistory &&
+                {searchHistory.length && showHistory ?
                     <div className="search-history">
                         {searchHistory.map((item, index) =>
                             <div
@@ -96,7 +95,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
                                 <span>{item}</span>
                             </div>
                         )}
-                    </div>
+                    </div> : ''
                 }
             </div>
         </form>;

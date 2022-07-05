@@ -1,10 +1,19 @@
+html {
+    font-size: 16px;
+}
+@media screen and (min-width: 480px) and (max-width: 900px) {
+    html { font-size: 15px; }
+}
+@media screen and (max-width: 480px) {
+    html { font-size: 14px; }
+}
+
 body {
     background: #e6e6e6;
 }
 
 #root  {
     text-align: center;
-    margin: 0 12.5%;
     position: relative;
 }
 
@@ -18,7 +27,19 @@ h1, h2, p {
 
 .game {
     display: inline-block;
+    margin-bottom: 1em;
+    position: relative;
+    padding: 0 2.5%;
 }
+
+.game .img-container {
+    background: #fff;
+    position: relative;
+    border-radius: 50%;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
 .game img {
     width: 100%;
 }
@@ -51,15 +72,36 @@ h1, h2, p {
     background: #4449;
 }
 
-@media screen and (min-width: 320px) and (max-width: 480px){
+@media screen and (min-width: 320px) and (max-width: 1000px){
     .game {
-        width: 50%;
+        width: 40%;
     }
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 1000px) {
+    #root {
+        margin: 0 12%;
+    }
+
+    * {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #root {
+        margin: 0 20%;
+    }
     .game {
-        width: 25%;
+        width: 20%;
     }
 }
 

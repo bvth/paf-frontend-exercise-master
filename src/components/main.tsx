@@ -71,15 +71,20 @@ export default function Main() {
 
     return content ?
         <>
-            <h1>{content.title}</h1>
-            <hr/>
-            <p>{content.description}</p>
-            <Filter
-                categories={filteringCategories}
-                providers={filteringProviders}
-                onFilter={onFilter}
-                onSearch={onSearch}/>
-            {filteredContent.map((item: CategoryModel) => <Category key={item.title + item.id} {...item}/>)}
+            <header>
+                <h1>{content.title}</h1>
+                <hr/>
+            </header>
+            <main>
+                <p>{content.description}</p>
+                <Filter
+                    categories={filteringCategories}
+                    providers={filteringProviders}
+                    onFilter={onFilter}
+                    onSearch={onSearch}/>
+                {filteredContent.map((item: CategoryModel) => <Category key={item.title + item.id} {...item}/>)}
+            </main>
+
         </>
     : ''
 }
