@@ -24,12 +24,16 @@ body {
     position: relative;
 }
 
+.category .flex-container {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 h1, h2, p {
     text-align: left;
 }
 
 .game {
-    display: inline-block;
     margin-bottom: 1em;
     position: relative;
     padding: 0 2.5%;
@@ -70,7 +74,7 @@ h1, h2, p {
     cursor: default;
 }
 
-.filter-form .search-container .flex-container {
+.flex-container {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -126,6 +130,7 @@ h1, h2, p {
         width: 100%;
         flex-direction: column;
     }
+
     .filter-form > * {
         margin: 10px 0;
     }
@@ -135,10 +140,14 @@ h1, h2, p {
     }
 
     .game {
-        width: 40%;
+        max-width: 45%;
     }
 }
 @media screen and (min-width: 768px) {
+    .game {
+        max-width: 20%;
+    }
+
     .filter-form {
         flex-direction: row;
         margin: 0 -10px;
@@ -175,10 +184,6 @@ h1, h2, p {
 @media screen and (min-width: 1200px) {
     #root {
         margin: 0 20%;
-    }
-
-    .game {
-        width: 20%;
     }
 }
 
