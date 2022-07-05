@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
-import {CategoryModel} from "../models/categoryModel";
-import Category from "./category";
-import Filter from "./filter";
+import {useEffect, useState} from 'react';
+import {CategoryModel} from '../models/categoryModel';
+import Category from './category';
+import Filter from './filter';
 type GameList = {title: string; lists: CategoryModel[]; description: string}
 export default function Main() {
     const [content, setContent] = useState<GameList>();
@@ -67,6 +67,7 @@ export default function Main() {
             })
         }
         setFilteredContent(newContent);
+        setFilteringProviders([]);
     }
 
     return content ?

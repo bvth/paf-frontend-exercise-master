@@ -1,4 +1,4 @@
-import {ChangeEvent, useEffect, useRef, useState} from "react";
+import {ChangeEvent, useEffect, useRef, useState} from 'react';
 
 export default function Filter(props: {categories: string[]; providers: string[]; onFilter: Function; onSearch: Function}) {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -10,8 +10,8 @@ export default function Filter(props: {categories: string[]; providers: string[]
     const inputRef = useRef(null);
 
     useEffect(() => {
-        if(localStorage.getItem("searchHistory"))
-            setSearchHistory(localStorage.getItem("searchHistory").split(","));
+        if(localStorage.getItem('searchHistory'))
+            setSearchHistory(localStorage.getItem('searchHistory').split(','));
     }, [])
 
     const setFilter = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -42,7 +42,7 @@ export default function Filter(props: {categories: string[]; providers: string[]
             if(history.length > 10)
                 history.pop();
             setSearchHistory(history);
-            localStorage.setItem("searchHistory", history);
+            localStorage.setItem('searchHistory', history);
         }
     }
 
@@ -59,38 +59,41 @@ export default function Filter(props: {categories: string[]; providers: string[]
         setSearchWord(word);
     }
 
-    return <form className="filter-form">
-            <div className="filter-container">
-                <select name="category" id="category" value={selectedCategory} onChange={setFilter}>
-                    <option value="">All categories</option>
+    return <form className='filter-form'>
+            <div className='filter-container'>
+                <select name='category' id='category' value={selectedCategory} onChange={setFilter}>
+                    <option value=''>All categories</option>
                     {props.categories.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
                 <select
-                    name="provider"
-                    id="provider"
+                    name='provider'
+                    id='provider'
                     value={selectedProvider}
                     onChange={setFilter}
                     disabled={!props.providers.length}>
-                    <option value="">All providers</option>
+                    <option value=''>All providers</option>
                     {props.providers.map(item => <option key={item} value={item}>{item}</option>)}
                 </select>
             </div>
-            <div className="search-container">
-                <input
-                    autoComplete="off"
-                    type="text"
-                    name="searchField"
-                    ref={inputRef}
-                    value={searchWord}
-                    onChange={changeInput}
-                    onFocus={toggleHistory}
-                    onBlur={toggleHistory}/>
-                <button onClick={onSearch} type="submit">Search</button>
+            <div className='search-container'>
+                <div className='flex-container'>
+                    <input
+                        autoComplete='off'
+                        type='text'
+                        name='searchField'
+                        ref={inputRef}
+                        value={searchWord}
+                        onChange={changeInput}
+                        onFocus={toggleHistory}
+                        onBlur={toggleHistory}
+                        placeholder='Game name ...'/>
+                    <button onClick={onSearch} type='submit'>Search</button>
+                </div>
                 {searchHistory.length && showHistory ?
-                    <div className="search-history">
+                    <div className='search-history'>
                         {searchHistory.map((item, index) =>
                             <div
-                                key={item + "_" + index}
+                                key={item + '_' + index}
                                 onMouseDown={(event) => setSearchWordFromHistory(event, item)}>
                                 <span>{item}</span>
                             </div>

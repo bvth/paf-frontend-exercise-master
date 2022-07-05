@@ -1,5 +1,6 @@
 html {
     font-size: 16px;
+    font-family: 'Adelle sans',sans-serif;
 }
 
 @media screen and (min-width: 480px) and (max-width: 1000px) {
@@ -44,15 +45,50 @@ h1, h2, p {
 
 .game img {
     width: 100%;
+    display: block;
+}
+
+.filter-form {
+    position: relative;
+    padding: 10px 0;
+    display: flex;
 }
 
 .filter-form > * {
-    display: inline-block;
-    margin: 5px 10px;
+    position: relative;
+    flex-grow: 1;
 }
 
-.filter-form .search-container {
-    position: relative;
+.filter-form .filter-container  > *{
+    width: 50%;
+    background: #fff;
+    border: none;
+}
+
+.filter-form .search-container .flex-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.filter-form .search-container .flex-container > *{
+    border: none
+}
+
+.filter-form .search-container .flex-container input {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.filter-form .search-container .flex-container  button {
+    background: #3abd74;
+    color: #fff;
+}
+
+.filter-container > *, .search-container .flex-container > * {
+    padding: 5px;
+    border-radius: 999px;
 }
 
 .filter-form .search-history {
@@ -62,11 +98,12 @@ h1, h2, p {
     border-radius: 5px;
     background: #fff;
     width: 100%;
+    margin-top: 1px;
 }
 
 .search-history div {
     cursor: pointer;
-    padding: 0.5em 0.4em;
+    padding: 5px 10px;
     text-align: left;
 }
 
@@ -75,8 +112,35 @@ h1, h2, p {
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px){
+    .filter-form {
+        width: 100%;
+        flex-direction: column;
+    }
+    .filter-form > * {
+        margin: 10px 0;
+    }
+
+    .filter-container > *, .search-container .flex-container > * {
+        padding: 5px;
+    }
+
     .game {
         width: 40%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .filter-form {
+        flex-direction: row;
+        margin: 0 -10px;
+        width: auto;
+    }
+
+    .filter-form > * {
+        margin: 10px;
+    }
+
+    .filter-container > *, .search-container .flex-container > * {
+        padding: 15px;
     }
 }
 
@@ -90,7 +154,7 @@ h1, h2, p {
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
     }
 
     h2 {
